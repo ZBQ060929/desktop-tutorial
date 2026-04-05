@@ -1,0 +1,397 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>沈阳景点之旅</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Microsoft YaHei', Arial, sans-serif;
+            background-color: #f5f5f5;
+            color: #333;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 100%;
+            margin: 0 auto;
+            overflow: hidden;
+        }
+        
+        /* 封面样式 */
+        .cover {
+            position: relative;
+            height: 100vh;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://i.postimg.cc/wx0tTdt6/d225720601b5f475463f0c3c1352e1db.jpg') center/cover no-repeat;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .cover h1 {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .cover p {
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
+        }
+        
+        .btn {
+            display: inline-block;
+            padding: 12px 30px;
+            background-color: #e63946;
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+        
+        .btn:hover {
+            background-color: #c1121f;
+            transform: translateY(-3px);
+        }
+        
+        /* 景点列表样式 */
+        .attractions {
+            padding: 50px 20px;
+        }
+        
+        .section-title {
+            text-align: center;
+            font-size: 2rem;
+            margin-bottom: 40px;
+            color: #333;
+        }
+        
+        .attraction-list {
+            display: flex;
+            flex-direction: column;
+            gap: 30px;
+        }
+        
+        .attraction-card {
+            background: white;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+        }
+        
+        .attraction-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .attraction-img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+        
+        .attraction-content {
+            padding: 20px;
+        }
+        
+        .attraction-content h3 {
+            font-size: 1.5rem;
+            margin-bottom: 10px;
+            color: #333;
+        }
+        
+        .attraction-content p {
+            margin-bottom: 15px;
+            color: #666;
+        }
+        
+        .attraction-info {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 10px;
+            margin-bottom: 15px;
+        }
+        
+        .info-tag {
+            background-color: #f0f0f0;
+            padding: 5px 10px;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            color: #666;
+        }
+        
+        /* 景点详情样式 */
+        .attraction-detail {
+            padding: 50px 20px;
+            background: white;
+        }
+        
+        .detail-header {
+            text-align: center;
+            margin-bottom: 30px;
+        }
+        
+        .detail-header h2 {
+            font-size: 2rem;
+            margin-bottom: 10px;
+        }
+        
+        .detail-img {
+            width: 100%;
+            height: 300px;
+            object-fit: cover;
+            border-radius: 10px;
+            margin-bottom: 30px;
+        }
+        
+        .detail-content {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .detail-content h3 {
+            font-size: 1.5rem;
+            margin: 20px 0 10px;
+            color: #333;
+        }
+        
+        .detail-content p {
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+        
+        /* 底部样式 */
+        .footer {
+            background-color: #333;
+            color: white;
+            text-align: center;
+            padding: 30px 20px;
+        }
+        
+        .footer p {
+            margin-bottom: 10px;
+        }
+        
+        /* 响应式设计 */
+        @media (min-width: 768px) {
+            .attraction-list {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            
+            .attraction-card {
+                width: calc(33.333% - 20px);
+            }
+        }
+        
+        @media (max-width: 767px) {
+            .cover h1 {
+                font-size: 2rem;
+            }
+            
+            .cover p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+            }
+            
+            .attraction-content h3 {
+                font-size: 1.3rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- 封面 -->
+    <div class="container cover" id="cover">
+        <h1>沈阳景点之旅</h1>
+        <p>探索历史文化名城的魅力</p>
+        <button class="btn" onclick="scrollToAttractions()">开始探索</button>
+    </div>
+    
+    <!-- 景点列表 -->
+    <div class="container attractions" id="attractions">
+        <h2 class="section-title">热门景点</h2>
+        <div class="attraction-list">
+            <!-- 沈阳故宫 -->
+            <div class="attraction-card">
+                <img src="https://picsum.photos/id/1048/800/600" alt="沈阳故宫" class="attraction-img" onerror="this.src='https://picsum.photos/id/1031/800/600'">
+                <div class="attraction-content">
+                    <h3>沈阳故宫</h3>
+                    <div class="attraction-info">
+                        <span class="info-tag">世界文化遗产</span>
+                        <span class="info-tag">国家5A级景区</span>
+                        <span class="info-tag">历史古迹</span>
+                    </div>
+                    <p>沈阳故宫是中国现存仅次于北京故宫的最完整的古代宫殿建筑群，是清太祖努尔哈赤和清太宗皇太极营造和使用的宫殿。</p>
+                    <button class="btn" onclick="showDetail('forbidden-city')">查看详情</button>
+                </div>
+            </div>
+            
+            <!-- 大帅府 -->
+            <div class="attraction-card">
+                <img src="https://picsum.photos/id/1067/800/600" alt="大帅府" class="attraction-img" onerror="this.src='https://picsum.photos/id/1031/800/600'">
+                <div class="attraction-content">
+                    <h3>大帅府</h3>
+                    <div class="attraction-info">
+                        <span class="info-tag">历史建筑</span>
+                        <span class="info-tag">爱国主义教育基地</span>
+                        <span class="info-tag">文化遗产</span>
+                    </div>
+                    <p>大帅府是奉系军阀张作霖及其长子张学良的官邸和私宅，是东北地区保存最为完好的名人故居之一。</p>
+                    <button class="btn" onclick="showDetail('mansion')">查看详情</button>
+                </div>
+            </div>
+            
+            <!-- 东塔护国永光寺 -->
+            <div class="attraction-card">
+                <img src="https://picsum.photos/id/1082/800/600" alt="东塔护国永光寺" class="attraction-img" onerror="this.src='https://picsum.photos/id/1031/800/600'">
+                <div class="attraction-content">
+                    <h3>东塔护国永光寺</h3>
+                    <div class="attraction-info">
+                        <span class="info-tag">佛教寺庙</span>
+                        <span class="info-tag">历史古迹</span>
+                        <span class="info-tag">文化遗产</span>
+                    </div>
+                    <p>东塔护国永光寺是沈阳八景之一，与西塔、南塔、北塔并称为沈阳四塔，是沈阳重要的佛教活动场所。</p>
+                    <button class="btn" onclick="showDetail('temple')">查看详情</button>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <!-- 沈阳故宫详情 -->
+    <div class="container attraction-detail" id="forbidden-city-detail" style="display: none;">
+        <div class="detail-header">
+            <h2>沈阳故宫</h2>
+            <p>世界文化遗产 · 国家5A级景区</p>
+        </div>
+        <img src="https://picsum.photos/id/1048/1200/800" alt="沈阳故宫" class="detail-img" onerror="this.src='https://picsum.photos/id/1031/1200/800'">
+        <div class="detail-content">
+            <h3>历史沿革</h3>
+            <p>沈阳故宫，又称盛京皇宫，始建于后金天命十年（1625年），是清太祖努尔哈赤和清太宗皇太极营造和使用的宫殿。清世祖福临在此即位称帝。沈阳故宫是中国现存仅次于北京故宫的最完整的古代宫殿建筑群，在建筑艺术上承袭了中国古代建筑传统，融汉、满、蒙族建筑艺术为一体，具有很高的历史和艺术价值。</p>
+            
+            <h3>建筑特色</h3>
+            <p>沈阳故宫占地面积约6万平方米，有古建筑114座，500多间，分为东路、中路和西路三大部分。东路为努尔哈赤时期建造的大政殿与十王亭；中路为皇太极时期续建的大清门、崇政殿、凤凰楼、清宁宫等；西路则是乾隆时期增建的文溯阁、嘉荫堂和仰熙斋等。</p>
+            
+            <h3>参观信息</h3>
+            <p>开放时间：旺季（4月10日-10月10日）8:30-17:30，淡季（10月11日-次年4月9日）9:00-16:30</p>
+            <p>门票价格：旺季60元，淡季50元</p>
+            <p>交通路线：乘坐地铁1号线到怀远门站下车，步行约10分钟即可到达</p>
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="btn" onclick="backToList()">返回列表</button>
+        </div>
+    </div>
+    
+    <!-- 大帅府详情 -->
+    <div class="container attraction-detail" id="mansion-detail" style="display: none;">
+        <div class="detail-header">
+            <h2>大帅府</h2>
+            <p>历史建筑 · 爱国主义教育基地</p>
+        </div>
+        <img src="https://picsum.photos/id/1067/1200/800" alt="大帅府" class="detail-img" onerror="this.src='https://picsum.photos/id/1031/1200/800'">
+        <div class="detail-content">
+            <h3>历史沿革</h3>
+            <p>大帅府，又称张氏帅府，是奉系军阀张作霖及其长子张学良的官邸和私宅，始建于1914年，占地2.9万平方米，总建筑面积2.76万平方米。它是东北地区保存最为完好的名人故居之一，也是中国近代重要的历史遗迹。</p>
+            
+            <h3>建筑特色</h3>
+            <p>大帅府由中院、东院、西院和院外建筑等四个部分组成，既有中国传统风格的四合院，又有欧洲古典风格的洋楼，还有中西合璧的建筑，是中国近代建筑的重要实例。主要建筑包括大青楼、小青楼、西院红楼群等。</p>
+            
+            <h3>参观信息</h3>
+            <p>开放时间：夏季8:30-17:30，冬季9:00-17:00</p>
+            <p>门票价格：60元</p>
+            <p>交通路线：乘坐地铁1号线到中街站下车，步行约15分钟即可到达</p>
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="btn" onclick="backToList()">返回列表</button>
+        </div>
+    </div>
+    
+    <!-- 东塔护国永光寺详情 -->
+    <div class="container attraction-detail" id="temple-detail" style="display: none;">
+        <div class="detail-header">
+            <h2>东塔护国永光寺</h2>
+            <p>佛教寺庙 · 历史古迹</p>
+        </div>
+        <img src="https://picsum.photos/id/1082/1200/800" alt="东塔护国永光寺" class="detail-img" onerror="this.src='https://picsum.photos/id/1031/1200/800'">
+        <div class="detail-content">
+            <h3>历史沿革</h3>
+            <p>东塔护国永光寺始建于清崇德八年（1643年），是清太宗皇太极敕建的沈阳城外东、西、南、北四塔之一。四塔的建造是为了护国安民，镇妖除魔。东塔象征着"慧灯普照"，是沈阳八景之一。</p>
+            
+            <h3>建筑特色</h3>
+            <p>东塔护国永光寺由塔院和寺院两部分组成。塔为藏式喇嘛塔，高33米，由基座、塔身、相轮三部分组成。寺院建筑包括山门、天王殿、大雄宝殿、东西配殿等，布局严谨，气势恢宏。</p>
+            
+            <h3>参观信息</h3>
+            <p>开放时间：8:00-17:00</p>
+            <p>门票价格：免费</p>
+            <p>交通路线：乘坐地铁1号线到滂江街站下车，转乘公交车或打车前往</p>
+        </div>
+        <div style="text-align: center; margin-top: 30px;">
+            <button class="btn" onclick="backToList()">返回列表</button>
+        </div>
+    </div>
+    
+    <!-- 底部 -->
+    <div class="container footer">
+        <p>© 2026 沈阳景点之旅</p>
+        <p>探索历史文化名城的魅力</p>
+    </div>
+    
+    <script>
+        // 滚动到景点列表
+        function scrollToAttractions() {
+            document.getElementById('attractions').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // 显示景点详情
+        function showDetail(attraction) {
+            // 隐藏所有详情
+            document.getElementById('forbidden-city-detail').style.display = 'none';
+            document.getElementById('mansion-detail').style.display = 'none';
+            document.getElementById('temple-detail').style.display = 'none';
+            
+            // 显示选中的详情
+            document.getElementById(attraction + '-detail').style.display = 'block';
+            
+            // 滚动到详情页
+            document.getElementById(attraction + '-detail').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // 返回景点列表
+        function backToList() {
+            // 隐藏所有详情
+            document.getElementById('forbidden-city-detail').style.display = 'none';
+            document.getElementById('mansion-detail').style.display = 'none';
+            document.getElementById('temple-detail').style.display = 'none';
+            
+            // 滚动到景点列表
+            document.getElementById('attractions').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // 微信浏览器适配
+        document.addEventListener('DOMContentLoaded', function() {
+            // 处理微信浏览器的导航栏
+            if (typeof WeixinJSBridge !== 'undefined') {
+                WeixinJSBridge.invoke('hideOptionMenu');
+            }
+        });
+    </script>
+</body>
+</html>
