@@ -28,7 +28,7 @@
         .cover {
             position: relative;
             height: 100vh;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://i.postimg.cc/wx0tTdt6/d225720601b5f475463f0c3c1352e1db.jpg') center/cover no-repeat;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('https://trae-api-cn.mchost.guru/api/ide/v1/text_to_image?prompt=shenyang%20forbidden%20city%20400th%20anniversary%20celebration%20sign%20colorful%20landmark&image_size=landscape_16_9') center/cover no-repeat;
             display: flex;
             flex-direction: column;
             justify-content: center;
@@ -198,6 +198,290 @@
             }
         }
         
+        /* 图片轮播样式 */
+        .carousel {
+            position: relative;
+            width: 100%;
+            height: 100vh;
+            overflow: hidden;
+        }
+        
+        .carousel-slides {
+            display: flex;
+            height: 100%;
+            transition: transform 0.5s ease;
+        }
+        
+        .carousel-slide {
+            min-width: 100%;
+            height: 100%;
+            background-size: cover;
+            background-position: center;
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            color: white;
+            text-align: center;
+        }
+        
+        .carousel-slide::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5));
+        }
+        
+        .carousel-content {
+            position: relative;
+            z-index: 1;
+        }
+        
+        .carousel-controls {
+            position: absolute;
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            display: flex;
+            gap: 10px;
+            z-index: 1;
+        }
+        
+        .carousel-dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: rgba(255,255,255,0.5);
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .carousel-dot.active {
+            background: white;
+            transform: scale(1.2);
+        }
+        
+        /* 导航栏样式 */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            background: rgba(255,255,255,0.95);
+            padding: 10px 20px;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 1000;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .navbar-title {
+            font-size: 1.2rem;
+            font-weight: bold;
+            color: #e63946;
+        }
+        
+        .navbar-search {
+            display: flex;
+            gap: 10px;
+            align-items: center;
+        }
+        
+        .search-input {
+            padding: 8px 15px;
+            border: 1px solid #ddd;
+            border-radius: 20px;
+            outline: none;
+            width: 200px;
+        }
+        
+        /* 收藏和点赞按钮 */
+        .action-buttons {
+            display: flex;
+            gap: 15px;
+            margin-top: 15px;
+        }
+        
+        .action-btn {
+            display: flex;
+            align-items: center;
+            gap: 5px;
+            padding: 8px 15px;
+            border: none;
+            border-radius: 20px;
+            background: #f0f0f0;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .action-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .action-btn.active {
+            background: #e63946;
+            color: white;
+        }
+        
+        /* 分享按钮 */
+        .share-btn {
+            position: fixed;
+            bottom: 80px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #e63946;
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 1000;
+        }
+        
+        /* 回到顶部按钮 */
+        .back-to-top {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #333;
+            color: white;
+            border: none;
+            font-size: 1.5rem;
+            cursor: pointer;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.2);
+            z-index: 1000;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+        }
+        
+        /* 地图链接按钮 */
+        .map-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 5px;
+            padding: 10px 20px;
+            background: #2e7d32;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            text-decoration: none;
+            margin-top: 10px;
+            transition: all 0.3s ease;
+        }
+        
+        .map-btn:hover {
+            background: #1b5e20;
+            transform: translateY(-2px);
+        }
+        
+        /* 评论区 */
+        .comments-section {
+            margin-top: 30px;
+            padding-top: 30px;
+            border-top: 1px solid #eee;
+        }
+        
+        .comment-input {
+            width: 100%;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 10px;
+            resize: vertical;
+            min-height: 80px;
+            margin-bottom: 10px;
+        }
+        
+        .comment-btn {
+            padding: 10px 25px;
+            background: #e63946;
+            color: white;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+        
+        .comment-list {
+            margin-top: 20px;
+        }
+        
+        .comment-item {
+            padding: 15px;
+            background: #f9f9f9;
+            border-radius: 10px;
+            margin-bottom: 10px;
+        }
+        
+        .comment-user {
+            font-weight: bold;
+            margin-bottom: 5px;
+            color: #333;
+        }
+        
+        .comment-text {
+            color: #666;
+        }
+        
+        /* 加载动画 */
+        .loading {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 2000;
+            transition: opacity 0.5s ease;
+        }
+        
+        .loading.hidden {
+            opacity: 0;
+            pointer-events: none;
+        }
+        
+        .loading-spinner {
+            width: 50px;
+            height: 50px;
+            border: 5px solid #f0f0f0;
+            border-top-color: #e63946;
+            border-radius: 50%;
+            animation: spin 1s linear infinite;
+        }
+        
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+        
+        /* 响应式设计 */
+        @media (min-width: 768px) {
+            .attraction-list {
+                flex-direction: row;
+                flex-wrap: wrap;
+                justify-content: space-between;
+            }
+            
+            .attraction-card {
+                width: calc(33.333% - 20px);
+            }
+        }
+        
         @media (max-width: 767px) {
             .cover h1 {
                 font-size: 2rem;
@@ -214,15 +498,61 @@
             .attraction-content h3 {
                 font-size: 1.3rem;
             }
+            
+            .search-input {
+                width: 120px;
+            }
+            
+            .navbar-title {
+                font-size: 1rem;
+            }
         }
     </style>
 </head>
 <body>
-    <!-- 封面 -->
-    <div class="container cover" id="cover">
-        <h1>沈阳景点之旅</h1>
-        <p>探索历史文化名城的魅力</p>
-        <button class="btn" onclick="scrollToAttractions()">开始探索</button>
+    <!-- 加载动画 -->
+    <div class="loading" id="loading">
+        <div class="loading-spinner"></div>
+    </div>
+    
+    <!-- 导航栏 -->
+    <nav class="navbar">
+        <div class="navbar-title">沈阳景点</div>
+        <div class="navbar-search">
+            <input type="text" class="search-input" placeholder="搜索景点..." id="searchInput">
+        </div>
+    </nav>
+    
+    <!-- 封面轮播 -->
+    <div class="carousel" id="carousel">
+        <div class="carousel-slides" id="carouselSlides">
+            <div class="carousel-slide" style="background-image: url('https://i.postimg.cc/W3kBMRRY/b9127f871337e23aead5ab10de71fe4c.jpg');">
+                <div class="carousel-content">
+                    <h1>沈阳故宫</h1>
+                    <p>世界文化遗产 · 清代初期皇宫</p>
+                    <button class="btn" onclick="showDetail('forbidden-city')">立即查看</button>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('https://i.postimg.cc/hGRnpbgg/b135693ccd02a0821937968c94c772ca.jpg');">
+                <div class="carousel-content">
+                    <h1>大帅府</h1>
+                    <p>历史建筑 · 名人故居</p>
+                    <button class="btn" onclick="showDetail('mansion')">立即查看</button>
+                </div>
+            </div>
+            <div class="carousel-slide" style="background-image: url('https://i.postimg.cc/RhN2MN45/2a2a7c558400af783b3d4ab7fbd455f1.jpg');">
+                <div class="carousel-content">
+                    <h1>东塔护国永光寺</h1>
+                    <p>佛教寺庙 · 历史古迹</p>
+                    <button class="btn" onclick="scrollToAttractions()">开始探索</button>
+                </div>
+            </div>
+        </div>
+        <div class="carousel-controls">
+            <span class="carousel-dot active" onclick="goToSlide(0)"></span>
+            <span class="carousel-dot" onclick="goToSlide(1)"></span>
+            <span class="carousel-dot" onclick="goToSlide(2)"></span>
+        </div>
     </div>
     
     <!-- 景点列表 -->
@@ -230,8 +560,8 @@
         <h2 class="section-title">热门景点</h2>
         <div class="attraction-list">
             <!-- 沈阳故宫 -->
-            <div class="attraction-card">
-                <img src="https://picsum.photos/id/1048/800/600" alt="沈阳故宫" class="attraction-img" onerror="this.src='https://picsum.photos/id/1031/800/600'">
+            <div class="attraction-card" data-name="沈阳故宫">
+                <img src="https://i.postimg.cc/RhN2MN45/2a2a7c558400af783b3d4ab7fbd455f1.jpg" alt="沈阳故宫" class="attraction-img" onerror="this.src='https://picsum.photos/id/1031/800/600'">
                 <div class="attraction-content">
                     <h3>沈阳故宫</h3>
                     <div class="attraction-info">
@@ -240,13 +570,21 @@
                         <span class="info-tag">历史古迹</span>
                     </div>
                     <p>沈阳故宫是中国现存仅次于北京故宫的最完整的古代宫殿建筑群，是清太祖努尔哈赤和清太宗皇太极营造和使用的宫殿。</p>
+                    <div class="action-buttons">
+                        <button class="action-btn" id="like-forbidden-city" onclick="toggleLike('forbidden-city')">
+                            <span>❤️</span> <span class="like-count">128</span>
+                        </button>
+                        <button class="action-btn" id="favorite-forbidden-city" onclick="toggleFavorite('forbidden-city')">
+                            <span>⭐</span> 收藏
+                        </button>
+                    </div>
                     <button class="btn" onclick="showDetail('forbidden-city')">查看详情</button>
                 </div>
             </div>
             
             <!-- 大帅府 -->
-            <div class="attraction-card">
-                <img src="https://picsum.photos/id/1067/800/600" alt="大帅府" class="attraction-img" onerror="this.src='https://picsum.photos/id/1031/800/600'">
+            <div class="attraction-card" data-name="大帅府">
+                <img src="https://i.postimg.cc/hGRnpbgg/b135693ccd02a0821937968c94c772ca.jpg" alt="大帅府" class="attraction-img" onerror="this.src='https://picsum.photos/id/1031/800/600'">
                 <div class="attraction-content">
                     <h3>大帅府</h3>
                     <div class="attraction-info">
@@ -255,13 +593,21 @@
                         <span class="info-tag">文化遗产</span>
                     </div>
                     <p>大帅府是奉系军阀张作霖及其长子张学良的官邸和私宅，是东北地区保存最为完好的名人故居之一。</p>
+                    <div class="action-buttons">
+                        <button class="action-btn" id="like-mansion" onclick="toggleLike('mansion')">
+                            <span>❤️</span> <span class="like-count">95</span>
+                        </button>
+                        <button class="action-btn" id="favorite-mansion" onclick="toggleFavorite('mansion')">
+                            <span>⭐</span> 收藏
+                        </button>
+                    </div>
                     <button class="btn" onclick="showDetail('mansion')">查看详情</button>
                 </div>
             </div>
             
             <!-- 东塔护国永光寺 -->
-            <div class="attraction-card">
-                <img src="https://picsum.photos/id/1082/800/600" alt="东塔护国永光寺" class="attraction-img" onerror="this.src='https://picsum.photos/id/1031/800/600'">
+            <div class="attraction-card" data-name="东塔护国永光寺">
+                <img src="https://i.postimg.cc/J4dZDt8J/1899d505bfa8ee16bab92d090de0decf.jpg" alt="东塔护国永光寺" class="attraction-img" onerror="this.src='https://picsum.photos/id/1031/800/600'">
                 <div class="attraction-content">
                     <h3>东塔护国永光寺</h3>
                     <div class="attraction-info">
@@ -270,6 +616,14 @@
                         <span class="info-tag">文化遗产</span>
                     </div>
                     <p>东塔护国永光寺是沈阳八景之一，与西塔、南塔、北塔并称为沈阳四塔，是沈阳重要的佛教活动场所。</p>
+                    <div class="action-buttons">
+                        <button class="action-btn" id="like-temple" onclick="toggleLike('temple')">
+                            <span>❤️</span> <span class="like-count">72</span>
+                        </button>
+                        <button class="action-btn" id="favorite-temple" onclick="toggleFavorite('temple')">
+                            <span>⭐</span> 收藏
+                        </button>
+                    </div>
                     <button class="btn" onclick="showDetail('temple')">查看详情</button>
                 </div>
             </div>
@@ -294,6 +648,26 @@
             <p>开放时间：旺季（4月10日-10月10日）8:30-17:30，淡季（10月11日-次年4月9日）9:00-16:30</p>
             <p>门票价格：旺季60元，淡季50元</p>
             <p>交通路线：乘坐地铁1号线到怀远门站下车，步行约10分钟即可到达</p>
+            
+            <button class="map-btn" onclick="window.location.href='https://api.map.baidu.com/direction?origin=current&destination=41.81582,123.431387&mode=driving&output=html'">
+                📍 导航到沈阳故宫
+            </button>
+            
+            <div class="comments-section">
+                <h3>用户评论</h3>
+                <div class="comment-list" id="comments-forbidden-city">
+                    <div class="comment-item">
+                        <div class="comment-user">小明</div>
+                        <div class="comment-text">非常值得一去的地方，历史文化气息浓厚！</div>
+                    </div>
+                    <div class="comment-item">
+                        <div class="comment-user">游客A</div>
+                        <div class="comment-text">建筑很有特色，比北京故宫更有满族风格。</div>
+                    </div>
+                </div>
+                <textarea class="comment-input" id="commentInput-forbidden-city" placeholder="写下你的评论..."></textarea>
+                <button class="comment-btn" onclick="addComment('forbidden-city')">发布评论</button>
+            </div>
         </div>
         <div style="text-align: center; margin-top: 30px;">
             <button class="btn" onclick="backToList()">返回列表</button>
@@ -306,7 +680,7 @@
             <h2>大帅府</h2>
             <p>历史建筑 · 爱国主义教育基地</p>
         </div>
-        <img src="https://picsum.photos/id/1067/1200/800" alt="大帅府" class="detail-img" onerror="this.src='https://picsum.photos/id/1031/1200/800'">
+        <img src="https://i.postimg.cc/hGRnpbgg/b135693ccd02a0821937968c94c772ca.jpg" alt="大帅府" class="detail-img" onerror="this.src='https://picsum.photos/id/1031/1200/800'">
         <div class="detail-content">
             <h3>历史沿革</h3>
             <p>大帅府，又称张氏帅府，是奉系军阀张作霖及其长子张学良的官邸和私宅，始建于1914年，占地2.9万平方米，总建筑面积2.76万平方米。它是东北地区保存最为完好的名人故居之一，也是中国近代重要的历史遗迹。</p>
@@ -318,6 +692,22 @@
             <p>开放时间：夏季8:30-17:30，冬季9:00-17:00</p>
             <p>门票价格：60元</p>
             <p>交通路线：乘坐地铁1号线到中街站下车，步行约15分钟即可到达</p>
+            
+            <button class="map-btn" onclick="window.location.href='https://api.map.baidu.com/direction?origin=current&destination=41.805267,123.431119&mode=driving&output=html'">
+                📍 导航到大帅府
+            </button>
+            
+            <div class="comments-section">
+                <h3>用户评论</h3>
+                <div class="comment-list" id="comments-mansion">
+                    <div class="comment-item">
+                        <div class="comment-user">历史爱好者</div>
+                        <div class="comment-text">了解张学良和张作霖的历史，这里是必去之地。</div>
+                    </div>
+                </div>
+                <textarea class="comment-input" id="commentInput-mansion" placeholder="写下你的评论..."></textarea>
+                <button class="comment-btn" onclick="addComment('mansion')">发布评论</button>
+            </div>
         </div>
         <div style="text-align: center; margin-top: 30px;">
             <button class="btn" onclick="backToList()">返回列表</button>
@@ -330,7 +720,7 @@
             <h2>东塔护国永光寺</h2>
             <p>佛教寺庙 · 历史古迹</p>
         </div>
-        <img src="https://picsum.photos/id/1082/1200/800" alt="东塔护国永光寺" class="detail-img" onerror="this.src='https://picsum.photos/id/1031/1200/800'">
+        <img src="https://i.postimg.cc/G3DmJ2vv/8352a02695f9b542f682e642a1ee3377.jpg" alt="东塔护国永光寺" class="detail-img" onerror="this.src='https://picsum.photos/id/1031/1200/800'">
         <div class="detail-content">
             <h3>历史沿革</h3>
             <p>东塔护国永光寺始建于清崇德八年（1643年），是清太宗皇太极敕建的沈阳城外东、西、南、北四塔之一。四塔的建造是为了护国安民，镇妖除魔。东塔象征着"慧灯普照"，是沈阳八景之一。</p>
@@ -342,11 +732,37 @@
             <p>开放时间：8:00-17:00</p>
             <p>门票价格：免费</p>
             <p>交通路线：乘坐地铁1号线到滂江街站下车，转乘公交车或打车前往</p>
+            
+            <button class="map-btn" onclick="window.location.href='https://api.map.baidu.com/direction?origin=current&destination=41.779562,123.478557&mode=driving&output=html'">
+                📍 导航到东塔护国永光寺
+            </button>
+            
+            <div class="comments-section">
+                <h3>用户评论</h3>
+                <div class="comment-list" id="comments-temple">
+                    <div class="comment-item">
+                        <div class="comment-user">虔诚香客</div>
+                        <div class="comment-text">环境清幽，香火鼎盛，值得一去的佛门圣地。</div>
+                    </div>
+                </div>
+                <textarea class="comment-input" id="commentInput-temple" placeholder="写下你的评论..."></textarea>
+                <button class="comment-btn" onclick="addComment('temple')">发布评论</button>
+            </div>
         </div>
         <div style="text-align: center; margin-top: 30px;">
             <button class="btn" onclick="backToList()">返回列表</button>
         </div>
     </div>
+    
+    <!-- 分享按钮 -->
+    <button class="share-btn" onclick="shareToWeChat()">
+        📤
+    </button>
+    
+    <!-- 回到顶部按钮 -->
+    <button class="back-to-top" id="backToTop" onclick="scrollToTop()">
+        ↑
+    </button>
     
     <!-- 底部 -->
     <div class="container footer">
@@ -355,6 +771,55 @@
     </div>
     
     <script>
+        // 数据存储
+        let likes = {
+            'forbidden-city': 128,
+            'mansion': 95,
+            'temple': 72
+        };
+        let likedAttractions = new Set();
+        let favoriteAttractions = new Set();
+        let currentSlide = 0;
+        let autoSlideInterval;
+        
+        // 页面加载完成后隐藏加载动画
+        window.addEventListener('load', function() {
+            setTimeout(function() {
+                document.getElementById('loading').classList.add('hidden');
+            }, 1500);
+            
+            startAutoSlide();
+            loadFromLocalStorage();
+        });
+        
+        // 图片轮播功能
+        function goToSlide(index) {
+            currentSlide = index;
+            const slides = document.getElementById('carouselSlides');
+            slides.style.transform = `translateX(-${index * 100}%)`;
+            
+            const dots = document.querySelectorAll('.carousel-dot');
+            dots.forEach((dot, i) => {
+                dot.classList.toggle('active', i === index);
+            });
+        }
+        
+        function nextSlide() {
+            currentSlide = (currentSlide + 1) % 3;
+            goToSlide(currentSlide);
+        }
+        
+        function startAutoSlide() {
+            autoSlideInterval = setInterval(nextSlide, 5000);
+        }
+        
+        function stopAutoSlide() {
+            clearInterval(autoSlideInterval);
+        }
+        
+        document.getElementById('carousel').addEventListener('mouseenter', stopAutoSlide);
+        document.getElementById('carousel').addEventListener('mouseleave', startAutoSlide);
+        
         // 滚动到景点列表
         function scrollToAttractions() {
             document.getElementById('attractions').scrollIntoView({ behavior: 'smooth' });
@@ -362,32 +827,176 @@
         
         // 显示景点详情
         function showDetail(attraction) {
-            // 隐藏所有详情
             document.getElementById('forbidden-city-detail').style.display = 'none';
             document.getElementById('mansion-detail').style.display = 'none';
             document.getElementById('temple-detail').style.display = 'none';
             
-            // 显示选中的详情
             document.getElementById(attraction + '-detail').style.display = 'block';
-            
-            // 滚动到详情页
             document.getElementById(attraction + '-detail').scrollIntoView({ behavior: 'smooth' });
         }
         
         // 返回景点列表
         function backToList() {
-            // 隐藏所有详情
             document.getElementById('forbidden-city-detail').style.display = 'none';
             document.getElementById('mansion-detail').style.display = 'none';
             document.getElementById('temple-detail').style.display = 'none';
             
-            // 滚动到景点列表
             document.getElementById('attractions').scrollIntoView({ behavior: 'smooth' });
+        }
+        
+        // 点赞功能
+        function toggleLike(attraction) {
+            const btn = document.getElementById('like-' + attraction);
+            const countSpan = btn.querySelector('.like-count');
+            
+            if (likedAttractions.has(attraction)) {
+                likedAttractions.delete(attraction);
+                likes[attraction]--;
+                btn.classList.remove('active');
+            } else {
+                likedAttractions.add(attraction);
+                likes[attraction]++;
+                btn.classList.add('active');
+            }
+            
+            countSpan.textContent = likes[attraction];
+            saveToLocalStorage();
+        }
+        
+        // 收藏功能
+        function toggleFavorite(attraction) {
+            const btn = document.getElementById('favorite-' + attraction);
+            
+            if (favoriteAttractions.has(attraction)) {
+                favoriteAttractions.delete(attraction);
+                btn.classList.remove('active');
+            } else {
+                favoriteAttractions.add(attraction);
+                btn.classList.add('active');
+            }
+            
+            saveToLocalStorage();
+        }
+        
+        // 评论功能
+        function addComment(attraction) {
+            const input = document.getElementById('commentInput-' + attraction);
+            const text = input.value.trim();
+            
+            if (text) {
+                const commentList = document.getElementById('comments-' + attraction);
+                const commentItem = document.createElement('div');
+                commentItem.className = 'comment-item';
+                commentItem.innerHTML = `
+                    <div class="comment-user">游客${Math.floor(Math.random() * 1000)}</div>
+                    <div class="comment-text">${text}</div>
+                `;
+                commentList.appendChild(commentItem);
+                input.value = '';
+            }
+        }
+        
+        // 搜索功能
+        document.getElementById('searchInput').addEventListener('input', function(e) {
+            const query = e.target.value.toLowerCase();
+            const cards = document.querySelectorAll('.attraction-card');
+            
+            cards.forEach(card => {
+                const name = card.getAttribute('data-name').toLowerCase();
+                if (name.includes(query)) {
+                    card.style.display = 'block';
+                } else {
+                    card.style.display = 'none';
+                }
+            });
+        });
+        
+        // 回到顶部
+        function scrollToTop() {
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+        
+        window.addEventListener('scroll', function() {
+            const btn = document.getElementById('backToTop');
+            if (window.scrollY > 300) {
+                btn.classList.add('visible');
+            } else {
+                btn.classList.remove('visible');
+            }
+        });
+        
+        // 分享功能
+        function shareToWeChat() {
+            if (typeof WeixinJSBridge !== 'undefined') {
+                WeixinJSBridge.invoke('sendAppMessage', {
+                    title: '沈阳景点之旅',
+                    desc: '探索历史文化名城的魅力',
+                    link: window.location.href,
+                    imgUrl: ''
+                });
+            } else {
+                alert('请在微信中打开页面进行分享');
+            }
+        }
+        
+        // 导航功能
+        function navigateToAttraction(attractionName, latitude, longitude) {
+            console.log('导航被触发:', attractionName, latitude, longitude);
+            
+            // 直接跳转到百度地图
+            const baiduMapUrl = `https://maps.baidu.com/dir//${latitude},${longitude}?mode=driving&origin=我的位置`;
+            
+            try {
+                console.log('准备打开导航链接:', baiduMapUrl);
+                window.location.href = baiduMapUrl;
+            } catch (error) {
+                console.error('导航失败:', error);
+                alert('导航失败，请检查浏览器设置');
+            }
+        }
+        
+        // 本地存储
+        function saveToLocalStorage() {
+            localStorage.setItem('likedAttractions', JSON.stringify([...likedAttractions]));
+            localStorage.setItem('favoriteAttractions', JSON.stringify([...favoriteAttractions]));
+            localStorage.setItem('likes', JSON.stringify(likes));
+        }
+        
+        function loadFromLocalStorage() {
+            const savedLikes = localStorage.getItem('likes');
+            const savedLiked = localStorage.getItem('likedAttractions');
+            const savedFavorites = localStorage.getItem('favoriteAttractions');
+            
+            if (savedLikes) {
+                likes = JSON.parse(savedLikes);
+            }
+            
+            if (savedLiked) {
+                likedAttractions = new Set(JSON.parse(savedLiked));
+                likedAttractions.forEach(attraction => {
+                    const btn = document.getElementById('like-' + attraction);
+                    if (btn) btn.classList.add('active');
+                });
+            }
+            
+            if (savedFavorites) {
+                favoriteAttractions = new Set(JSON.parse(savedFavorites));
+                favoriteAttractions.forEach(attraction => {
+                    const btn = document.getElementById('favorite-' + attraction);
+                    if (btn) btn.classList.add('active');
+                });
+            }
+            
+            Object.keys(likes).forEach(attraction => {
+                const btn = document.getElementById('like-' + attraction);
+                if (btn) {
+                    btn.querySelector('.like-count').textContent = likes[attraction];
+                }
+            });
         }
         
         // 微信浏览器适配
         document.addEventListener('DOMContentLoaded', function() {
-            // 处理微信浏览器的导航栏
             if (typeof WeixinJSBridge !== 'undefined') {
                 WeixinJSBridge.invoke('hideOptionMenu');
             }
